@@ -1,2 +1,12 @@
-<app-navibar [leftButtonLabel]="BACK" [rightButtonLabel]="NEXT"></app-navibar>
-<!-- <app-loading-indicator></app-loading-indicator> -->
+<!-- Here we layout the base architecture of the app -->
+<!-- The loading indicator will also be a single instance -->
+<app-loading-indicator class="loading" *ngIf="loadingIndicatorService.isLoading"></app-loading-indicator>
+<!-- The routing component goes here and will change based on the routes -->
+<div class="router">
+    <!-- The navibar will be a single instace -->
+    <app-navibar [leftButtonLabel]="BACK" [rightButtonLabel]="NEXT" [titleLabel]="'Demo App'"></app-navibar>
+    <router-outlet></router-outlet>
+</div>
+<div *ngIf="userPosition" [@markerAnimation]="markerState" (@markerAnimation.done)="blinkDone()" class="marker" [style.left]="getMarkerLeft()" [style.top]="getMarkerTop()">
+    <img src="assets/angular.svg"/>
+</div>

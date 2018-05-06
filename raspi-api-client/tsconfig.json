@@ -7,7 +7,13 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "module": "amd",
+    "noImplicitAny": true,
+    "jsx": "react",
+    "jsxFactory": "tsx",
     "target": "es5",
+    "preserveConstEnums": true,
+    "suppressImplicitAnyIndexErrors": true,
     "typeRoots": [
       "node_modules/@types"
     ],

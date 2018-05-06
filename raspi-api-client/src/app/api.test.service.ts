@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { Country } from '../models/country.model';
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -9,7 +10,7 @@ const httpOptions = {
 @Injectable()
 export class ApiTestService {
 
-    private _ip = '192.168.0.19';
+    private _ip = 'localhost';
 
     constructor(private http: HttpClient) { }
 

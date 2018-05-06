@@ -1,0 +1,12 @@
+.loading {
+    z-index: 2000;
+}
+.router {
+    display: block;
+    margin-top: 50px;
+}
+.marker {
+    position: fixed;
+    width: 64px;
+    height: 64px;
+}
