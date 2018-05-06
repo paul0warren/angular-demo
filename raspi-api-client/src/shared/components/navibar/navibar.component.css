@@ -1,0 +1,26 @@
+:host {
+    background-color: rgba(250, 250, 250, 0.5);
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 40px;
+    box-shadow: 0 2px 3px lightgrey;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-items: center;
+}
+
+.leftButtonLabel {
+    align-self: center;
+    justify-self: center;
+    float: left;
+}
+
+.rightButtonLabel {
+    float: right;
+}

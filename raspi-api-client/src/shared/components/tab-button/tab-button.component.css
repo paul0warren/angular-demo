@@ -1,0 +1,18 @@
+:host {
+    height: 100%;
+    padding: 0 10px;
+    vertical-align: middle;
+}
+
+.tab-button {
+    background: rgba(255, 255, 255, 0);
+}
+
+.tab-button-label {
+    background: rgba(255, 255, 255, 0);
+    color: blue;
+}
+
+.tab-button-label:hover {
+    color: rgba(0, 0, 255, 0.5);
+}

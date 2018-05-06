@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
-import { ApiTestService} from './api.test.service';
+import { ApiTestService } from './api.test.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,7 @@ import { ApiTestService} from './api.test.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'app';
+  title = 'Cities and Countries';
   public countries;
 
   constructor(private _demoService: ApiTestService) { }
@@ -16,10 +16,12 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.getCountries();
   }
- 
+
   getCountries() {
-   this._demoService.getCountries().subscribe(
-      data => { this.countries = data},
+    this._demoService.getCountries().subscribe(
+      data => {
+        this.countries = data;
+      },
       err => console.error(err),
       () => console.log('done loading countries')
     );
