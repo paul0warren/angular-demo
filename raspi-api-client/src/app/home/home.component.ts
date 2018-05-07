@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input, Output } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, OnDestroy } from '@angular/core';
 import {} from '@types/googlemaps';
 import { EventEmitter } from '@angular/core';
 import { HomeComponentService } from './home.component.service';
@@ -13,7 +13,7 @@ import { HomeComponentService } from './home.component.service';
 /**
  * This class will be the entry page to the app
  */
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
     @ViewChild('map')
     gmapElement: any;
@@ -21,6 +21,8 @@ export class HomeComponent implements OnInit {
 
     private _mapCenter: google.maps.LatLng;
     private _userLocation: google.maps.LatLng;
+    private _userLocationPx: google.maps.Point;
+    private _timer: any = null;
 
     /**
      * Notice the use of setters here in the following section. This is a great design pattern that can trigger
@@ -44,21 +46,6 @@ export class HomeComponent implements OnInit {
      */
     public set userLocation(value: google.maps.LatLng) {
         this._userLocation = value;
-        if (this.map && this.map.getProjection()) {
-
-
-            const projection = this.map.getProjection();
-            const bounds = this.map.getBounds();
-            const topRight = projection.fromLatLngToPoint(bounds.getNorthEast());
-            const bottomLeft = projection.fromLatLngToPoint(bounds.getSouthWest());
-            const scale = Math.pow(2, this.map.getZoom());
-            const worldPoint = projection.fromLatLngToPoint(value);
-            const point = new google.maps.Point(Math.floor((worldPoint.x - bottomLeft.x) * scale),
-            Math.floor((worldPoint.y - topRight.y) * scale));
-
-            console.log(value.toString());
-            this._homeComponentService.userLocation.emit(point);
-        }
     }
 
     public get mapCenter() {
@@ -94,6 +81,23 @@ export class HomeComponent implements OnInit {
                 }
             );
         }
+        // this.map.addListener('center_changed', _ => {
+        //     this.userLocation = this._userLocation;
+        // });
+        this._timer = setInterval(_ => {
+            if (this.map && this.map.getProjection()) {
+                const projection = this.map.getProjection();
+                const bounds = this.map.getBounds();
+                const topRight = projection.fromLatLngToPoint(bounds.getNorthEast());
+                const bottomLeft = projection.fromLatLngToPoint(bounds.getSouthWest());
+                const scale = Math.pow(2, this.map.getZoom());
+                const worldPoint = projection.fromLatLngToPoint(this._userLocation);
+                const point = new google.maps.Point(Math.floor((worldPoint.x - bottomLeft.x) * scale),
+                Math.floor((worldPoint.y - topRight.y) * scale));
+                this._userLocationPx = point;
+                this._homeComponentService.userLocation.emit(this._userLocationPx);
+            }
+        }, 10);
     }
     /**
      * @param  {google.maps.LatLng} position to drop the angular pin
@@ -108,6 +112,12 @@ export class HomeComponent implements OnInit {
         marker.addListener('click', _ => {
             alert('You have clicked the marker!');
         });
+    }
+
+    ngOnDestroy() {
+        if (this._timer) {
+            clearInterval(this._timer);
+        }
     }
 
 }
