@@ -8,6 +8,9 @@ const httpOptions = {
 };
 
 @Injectable()
+/**
+ * This is the class to make api calls
+ */
 export class ApiTestService {
 
     private _ip = 'localhost';

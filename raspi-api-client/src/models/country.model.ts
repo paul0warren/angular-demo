@@ -1,3 +1,6 @@
+/**
+ * Country interface
+ */
 export interface Country {
     _id: string;
     Code: string;

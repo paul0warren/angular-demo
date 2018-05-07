@@ -7,6 +7,9 @@ import { Component, Input } from '@angular/core';
         './button.component.scss'
     ]
 })
+/**
+ * Button component with label
+ */
 export class ButtonComponent {
     @Input('label')
     public label = 'LABEL';

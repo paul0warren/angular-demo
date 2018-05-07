@@ -67,13 +67,17 @@ export class AppComponent implements OnInit {
     this.loadingIndicatorService.isLoading = true;
     this.getCountries();
   }
-
+  /**
+   * Formats the pixel value to proper css string
+   */
   public getMarkerLeft() {
     if (this.userPosition) {
       return `${this.userPosition.x - 32}px`;
     }
   }
-
+  /**
+   * Formats the pixel value to proper css string
+   */
   public getMarkerTop() {
     if (this.userPosition) {
       return `${this.userPosition.y - 32}px`;

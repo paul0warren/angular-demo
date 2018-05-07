@@ -22,14 +22,26 @@ export class HomeComponent implements OnInit {
     private _mapCenter: google.maps.LatLng;
     private _userLocation: google.maps.LatLng;
 
+    /**
+     * Notice the use of setters here in the following section. This is a great design pattern that can trigger
+     * logic with the set pattern.
+     */
+
     @Input('mapCenter')
+    /**
+     * @param  {google.maps.LatLng} value for the center of the map in lat long
+     */
     public set mapCenter(value: google.maps.LatLng) {
         this._mapCenter = value;
         if (this.map) {
             this.map.setCenter(value);
         }
     }
-
+    /**
+     * @param  {google.maps.LatLng} value for the user
+     * Notice how this triggers a logic to convert the lat long into screen pixels and passed up through the
+     * service for event propagation.
+     */
     public set userLocation(value: google.maps.LatLng) {
         this._userLocation = value;
         if (this.map && this.map.getProjection()) {
@@ -83,6 +95,9 @@ export class HomeComponent implements OnInit {
             );
         }
     }
+    /**
+     * @param  {google.maps.LatLng} position to drop the angular pin
+     */
     private dropPinAt(position: google.maps.LatLng) {
         const marker = new google.maps.Marker({
             position: position,

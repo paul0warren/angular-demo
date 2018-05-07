@@ -8,4 +8,7 @@ import { LoadingIndicatorService } from './loading-indicator.service';
         './loading-indicator.component.scss'
     ]
 })
+/**
+ * Just a placeholder class. Everything is handled by the service.
+ */
 export class LoadingIndicatorComponent {}

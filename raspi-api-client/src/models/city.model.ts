@@ -1,3 +1,6 @@
+/**
+ * City interface
+ */
 export interface City {
     _id: string;
     ID: string;

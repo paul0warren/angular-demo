@@ -5,7 +5,6 @@ import { NgModule } from '@angular/core';
 import { ApiTestService } from './api.test.service';
 
 import { AppComponent } from './app.component';
-import { TabButtonComponent } from '../shared/components/tab-button/tab-button.component';
 import { NavibarComponent } from '../shared/components/navibar/navibar.component';
 import { LoadingIndicatorComponent } from '../shared/components/loading-indicator/loading-indicator.component';
 import { LoadingIndicatorService } from '../shared/components/loading-indicator/loading-indicator.service';
@@ -23,7 +22,6 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    TabButtonComponent,
     NavibarComponent,
     LoadingIndicatorComponent,
     HomeComponent,

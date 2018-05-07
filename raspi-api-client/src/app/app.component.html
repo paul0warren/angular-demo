@@ -7,6 +7,8 @@
     <app-navibar [leftButtonLabel]="BACK" [rightButtonLabel]="NEXT" [titleLabel]="'Demo App'"></app-navibar>
     <router-outlet></router-outlet>
 </div>
+<!-- Here we are showing the image on user location but using angular. This means we can do angular
+animation, event binding etc -->
 <div *ngIf="userPosition" [@markerAnimation]="markerState" (@markerAnimation.done)="blinkDone()" class="marker" [style.left]="getMarkerLeft()" [style.top]="getMarkerTop()">
     <img src="assets/angular.svg"/>
 </div>
